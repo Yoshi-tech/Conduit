@@ -1,6 +1,6 @@
 CXX = g++
 CXXFLAGS = -std=c++11 -pthread
-NCURSES_FLAGS = -L/opt/homebrew/opt/ncurses/lib -I/opt/homebrew/opt/ncurses/include -lncurses
+NCURSES_FLAGS = $(shell pkg-config --cflags --libs ncurses)
 
 all: server client
 
@@ -8,7 +8,7 @@ server: chatServer.cpp socketListen.cpp
 	$(CXX) $(CXXFLAGS) chatServer.cpp socketListen.cpp -o chatServer
 
 client: chatClient.cpp socketClient.cpp
-	$(CXX) $(CXXFLAGS) $(NCURSES_FLAGS) chatClient.cpp socketClient.cpp -o chatClient
+	$(CXX) $(CXXFLAGS) chatClient.cpp socketClient.cpp $(NCURSES_FLAGS) -o chatClient
 
 clean:
 	rm -f chatServer chatClient
