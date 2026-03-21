@@ -156,7 +156,7 @@ void fdHandler(int fd){
     std::string ready = "Connected to chat!\n";
     send(fd, ready.c_str(), ready.size(), 0);
 
-    char buffer[1024];
+    char buffer[65536];
     ssize_t userSize = recv(fd, buffer, sizeof(buffer), 0);
     if(userSize <= 0){
         std::lock_guard<std::mutex> lock(mtx);
