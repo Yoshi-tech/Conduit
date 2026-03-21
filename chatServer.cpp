@@ -242,7 +242,7 @@ void fdHandler(int fd){
                 send(fd, userList.c_str(), userList.size(), 0);
             }
             else if(command == "help"){
-                std::string helpMessage = "Commands:\n/users - list users\n/tictactoe <username> - challenge a player\n/accept - accept a challenge\n/move <1-9> - make a move\n/help - show this message\n";
+                sstd::string helpMessage = "Commands:\n/users - list users\n/tictactoe <username> - challenge a player\n/accept - accept a challenge\n/move <1-9> - make a move\n/image <url> - display an image\n/help - show this message\n";
                 send(fd, helpMessage.c_str(), helpMessage.size(), 0);
             }
             else if(command.substr(0, 9) == "tictactoe"){
